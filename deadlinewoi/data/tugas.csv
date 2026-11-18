@@ -1,0 +1,21 @@
+id,judul,mata_kuliah,kategori,deadline,bobot_jam,prioritas,status
+T001,Kuis Bab 3 Normalisasi,Basis Data,Kuis,2026-11-14,2.0,1,Belum
+T002,Laporan Praktikum ERD,Basis Data,Tugas,2026-11-18,4.5,2,Proses
+T003,Proyek Aplikasi Inventaris,Pemrograman Berorientasi Objek,Proyek,2026-12-20,30.0,1,Proses
+T004,UTS Jaringan Komputer,Jaringan Komputer,UTS,2026-11-20,6.0,1,Belum
+T005,Resume Materi Sistem Operasi Bab 4,Sistem Operasi,Tugas,2026-11-15,2.5,3,Selesai
+T006,Kuis Hukum Bisnis,Hukum Bisnis Informatika,Kuis,2026-11-17,1.5,2,Belum
+T007,Makalah Etika Profesi IT,Etika Profesi,Tugas,2026-11-28,5.0,2,Belum
+T008,UAS Kalkulus Lanjut,Matematika Diskrit,UAS,2026-12-18,8.0,1,Belum
+T009,Implementasi Algoritma Sorting,Struktur Data dan Algoritma,Tugas,2026-11-22,6.0,1,Proses
+T010,Presentasi Proyek SI,Analisis dan Perancangan SI,Proyek,2026-12-10,12.0,1,Belum
+T011,Kuis Teori Graf,Matematika Diskrit,Kuis,2026-11-19,2.0,2,Selesai
+T012,Laporan Kerja Praktik Bab 1,Kerja Praktik,Tugas,2026-11-30,8.0,1,Proses
+T013,UAS Basis Data,Basis Data,UAS,2026-12-22,10.0,1,Belum
+T014,Studi Kasus Jaringan LAN,Jaringan Komputer,Proyek,2026-12-05,10.0,2,Belum
+T015,Kuis Proses dan Thread,Sistem Operasi,Kuis,2026-11-21,1.5,3,Belum
+T016,Desain Mockup UI Aplikasi,Interaksi Manusia Komputer,Tugas,2026-11-25,5.0,2,Proses
+T017,UTS Pemrograman Berorientasi Objek,Pemrograman Berorientasi Objek,UTS,2026-11-13,5.0,1,Selesai
+T018,Analisis Kebutuhan Sistem,Analisis dan Perancangan SI,Tugas,2026-12-01,4.0,2,Belum
+T019,Latihan Soal UAS Jaringan,Jaringan Komputer,Tugas,2026-12-15,3.0,2,Belum
+T020,Demo Proyek Akhir Pemrograman,Pemrograman Terstruktur,Proyek,2026-12-19,20.0,1,Proses

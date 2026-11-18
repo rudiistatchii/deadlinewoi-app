@@ -1,0 +1,24 @@
+# Folder cache Python — dibuat otomatis, tidak perlu di-commit
+__pycache__/
+
+# File bytecode Python yang dikompilasi
+*.pyc
+*.pyo
+
+# Folder editor VS Code
+.vscode/
+
+# Folder editor JetBrains (PyCharm, IntelliJ, dll.)
+.idea/
+
+# Folder virtual environment Python
+venv/
+env/
+.env/
+
+# File environment variables (mungkin berisi data sensitif)
+.env
+
+# File sistem operasi
+.DS_Store
+Thumbs.db
