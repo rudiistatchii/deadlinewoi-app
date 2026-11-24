@@ -6,6 +6,7 @@ from typing import List, Optional  # memberikan anotasi tipe data statis
 from models import Tugas
 import storage
 import validasi
+from algoritma import merge_sort
 
 
 class TugasService:
@@ -126,7 +127,27 @@ class TugasService:
         kunci: str = "deadline",
         menurun: bool = False,
     ) -> List[Tugas]:
-        """Pengurutan data tugas menggunakan lambda."""
+        """Pengurutan data tugas menggunakan merge sort."""
+        target = self.daftar_tugas if daftar is None else daftar
+
+        peta_kunci = {
+            "deadline": lambda t: t.deadline,
+            "prioritas": lambda t: t.prioritas,
+            "bobot_jam": lambda t: t.bobot_jam,
+            "judul": lambda t: t.judul.lower(),
+            "mata_kuliah": lambda t: t.mata_kuliah.lower(),
+        }
+
+        fungsi_kunci = peta_kunci.get(kunci, lambda t: t.deadline)
+        return merge_sort(target, kunci=fungsi_kunci, terbalik=menurun)
+
+    def urutkan_tugas_bawaan(
+        self,
+        daftar: Optional[List[Tugas]] = None,
+        kunci: str = "deadline",
+        menurun: bool = False,
+    ) -> List[Tugas]:
+        """Versi awal yang memakai sorted() bawaan Python, disimpan sebagai pembanding hasil merge sort."""
         target = self.daftar_tugas if daftar is None else daftar
 
         peta_kunci = {
