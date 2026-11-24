@@ -16,14 +16,102 @@ class DeadlineWoiUI:
         self.root.title("DeadlineWoi — Manajemen Tugas Kuliah")
         self.root.geometry("980x600")
         self.root.minsize(850, 500)
+        self.root.configure(bg="#fff9f5")
 
         self.service = service if service is not None else TugasService()
 
         self.style = ttk.Style()
         self.style.theme_use("clam")
 
+        self._konfigurasi_tema_warna()
         self._buat_komponen()
         self.segarkan_tabel()
+
+    def _konfigurasi_tema_warna(self) -> None:
+        """Mengatur palet warna bertema warm peach-orange."""
+        warna_bg = "#fff9f5"
+        warna_card = "#fff4ec"
+        warna_border = "#fcd9c3"
+        warna_primary = "#f97316"
+        warna_primary_hover = "#ea580c"
+        warna_secondary_bg = "#ffedd5"
+        warna_secondary_text = "#9a3412"
+        warna_teks_gelap = "#431407"
+
+        self.style.configure("TFrame", background=warna_bg)
+        self.style.configure("TLabel", background=warna_bg, foreground=warna_teks_gelap)
+
+        # Style Labelframe (Kotak Navigasi & Filter)
+        self.style.configure("TLabelframe", background=warna_card, bordercolor=warna_border)
+        self.style.configure(
+            "TLabelframe.Label",
+            background=warna_card,
+            foreground=warna_primary,
+            font=("Segoe UI", 9, "bold"),
+        )
+
+        # Style Tombol Standar
+        self.style.configure(
+            "TButton",
+            background=warna_secondary_bg,
+            foreground=warna_secondary_text,
+            bordercolor=warna_border,
+            font=("Segoe UI", 9),
+            padding=5,
+        )
+        self.style.map(
+            "TButton",
+            background=[("active", "#fed7aa"), ("pressed", "#fdba74")],
+            foreground=[("active", "#7c2d12")],
+        )
+
+        # Style Tombol Utama (Aksen Oranye)
+        self.style.configure(
+            "Accent.TButton",
+            background=warna_primary,
+            foreground="#ffffff",
+            bordercolor=warna_primary_hover,
+            font=("Segoe UI", 9, "bold"),
+            padding=5,
+        )
+        self.style.map(
+            "Accent.TButton",
+            background=[("active", warna_primary_hover), ("pressed", "#c2410c")],
+            foreground=[("active", "#ffffff")],
+        )
+
+        # Style Input & Dropdown
+        self.style.configure("TEntry", fieldbackground="#ffffff", bordercolor=warna_border)
+        self.style.configure(
+            "TCombobox",
+            fieldbackground="#ffffff",
+            background=warna_secondary_bg,
+            bordercolor=warna_border,
+            foreground=warna_teks_gelap,
+        )
+
+        # Style Tabel Data (Treeview)
+        self.style.configure(
+            "Treeview",
+            background="#ffffff",
+            fieldbackground="#ffffff",
+            foreground="#292524",
+            bordercolor=warna_border,
+            rowheight=26,
+        )
+        self.style.map(
+            "Treeview",
+            background=[("selected", "#fed7aa")],
+            foreground=[("selected", "#7c2d12")],
+        )
+        self.style.configure(
+            "Treeview.Heading",
+            background=warna_secondary_bg,
+            foreground=warna_secondary_text,
+            font=("Segoe UI", 9, "bold"),
+            bordercolor=warna_border,
+        )
+        self.style.map("Treeview.Heading", background=[("active", "#fed7aa")])
 
     def _buat_komponen(self) -> None:
         """Menyusun seluruh widget antarmuka pengguna."""
@@ -38,7 +126,7 @@ class DeadlineWoiUI:
             header_frame,
             text="📝 DeadlineWoi",
             font=("Segoe UI", 16, "bold"),
-            foreground="#1e3a8a",
+            foreground="#ea580c",
         )
         lbl_judul.pack(side=tk.LEFT)
 
@@ -46,7 +134,7 @@ class DeadlineWoiUI:
             header_frame,
             text="Aplikasi Manajemen Tugas & Deadline Kuliah",
             font=("Segoe UI", 9, "italic"),
-            foreground="#64748b",
+            foreground="#c2410c",
         )
         lbl_subjudul.pack(side=tk.LEFT, padx=10, pady=4)
 
@@ -59,7 +147,7 @@ class DeadlineWoiUI:
         self.entry_cari.grid(row=0, column=1, padx=4, sticky=tk.W)
         self.entry_cari.bind("<Return>", lambda event: self.aksi_cari())
 
-        btn_cari = ttk.Button(filter_frame, text="🔍 Cari", command=self.aksi_cari)
+        btn_cari = ttk.Button(filter_frame, text="🔍 Cari", style="Accent.TButton", command=self.aksi_cari)
         btn_cari.grid(row=0, column=2, padx=4)
 
         ttk.Label(filter_frame, text="Status:").grid(row=0, column=3, padx=(12, 4))
@@ -121,7 +209,7 @@ class DeadlineWoiUI:
         aksi_frame = ttk.Frame(kontainer)
         aksi_frame.pack(fill=tk.X, pady=(0, 8))
 
-        btn_tambah = ttk.Button(aksi_frame, text="➕ Tambah Tugas Baru", command=self.dialog_tambah_tugas)
+        btn_tambah = ttk.Button(aksi_frame, text="➕ Tambah Tugas Baru", style="Accent.TButton", command=self.dialog_tambah_tugas)
         btn_tambah.pack(side=tk.LEFT, padx=(0, 6))
 
         btn_status = ttk.Button(aksi_frame, text="✔ Ubah Status", command=self.dialog_ubah_status)
@@ -135,7 +223,7 @@ class DeadlineWoiUI:
             kontainer,
             text="",
             font=("Segoe UI", 9, "bold"),
-            foreground="#334155",
+            foreground="#9a3412",
         )
         self.lbl_footer.pack(fill=tk.X, pady=(4, 0))
 
@@ -236,13 +324,17 @@ class DeadlineWoiUI:
         dialog = tk.Toplevel(self.root)
         dialog.title(f"Ubah Status {id_tugas}")
         dialog.geometry("300x160")
+        dialog.configure(bg="#fff9f5")
         dialog.transient(self.root)
         dialog.grab_set()
 
-        ttk.Label(dialog, text=f"Tugas: {id_tugas} - {item['values'][1][:20]}...").pack(pady=(12, 6))
-        ttk.Label(dialog, text="Pilih Status Baru:").pack(pady=2)
+        frame_dialog = ttk.Frame(dialog, padding="10")
+        frame_dialog.pack(fill=tk.BOTH, expand=True)
 
-        combo = ttk.Combobox(dialog, values=["Belum", "Proses", "Selesai"], state="readonly")
+        ttk.Label(frame_dialog, text=f"Tugas: {id_tugas} - {item['values'][1][:20]}...").pack(pady=(8, 4))
+        ttk.Label(frame_dialog, text="Pilih Status Baru:").pack(pady=2)
+
+        combo = ttk.Combobox(frame_dialog, values=["Belum", "Proses", "Selesai"], state="readonly")
         combo.set(status_sekarang)
         combo.pack(pady=4)
 
@@ -257,13 +349,14 @@ class DeadlineWoiUI:
             except ValueError as e:
                 messagebox.showerror("Error", str(e))
 
-        ttk.Button(dialog, text="Simpan", command=simpan_status).pack(pady=10)
+        ttk.Button(frame_dialog, text="Simpan", style="Accent.TButton", command=simpan_status).pack(pady=10)
 
     def dialog_tambah_tugas(self) -> None:
         """Dialog form untuk menambah tugas baru."""
         dialog = tk.Toplevel(self.root)
         dialog.title("Tambah Tugas Baru")
         dialog.geometry("380x380")
+        dialog.configure(bg="#fff9f5")
         dialog.transient(self.root)
         dialog.grab_set()
 
@@ -323,7 +416,7 @@ class DeadlineWoiUI:
             except ValueError as e:
                 messagebox.showerror("Validasi Gagal", str(e))
 
-        ttk.Button(frame, text="💾 Simpan Tugas", command=simpan_tugas).grid(row=7, column=0, columnspan=2, pady=16)
+        ttk.Button(frame, text="💾 Simpan Tugas", style="Accent.TButton", command=simpan_tugas).grid(row=7, column=0, columnspan=2, pady=16)
 
     def _ambil_tugas_dari_tabel_saat_ini(self):
         """Helper untuk mengambil objek Tugas yang sedang tampil di tabel."""
