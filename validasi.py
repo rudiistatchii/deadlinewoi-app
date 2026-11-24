@@ -1,6 +1,6 @@
 """Menyediakan validasi untuk data tugas."""
 
-from datetime import datetime
+from datetime import datetime  # memvalidasi format dan keabsahan tanggal
 
 KATEGORI_VALID = {"Kuis", "Tugas", "Proyek", "UTS", "UAS"}
 STATUS_VALID = {"Belum", "Proses", "Selesai"}
@@ -66,12 +66,12 @@ def validasi_bobot_jam(bobot_jam) -> float:
             f"Bobot jam '{bobot_jam}' harus berupa angka, contoh: 3 atau 1.5."
         )
 
-    assert isinstance(nilai, float), "Konversi bobot_jam ke float gagal."
-
     if nilai < 0:
         raise ValueError(
             f"Bobot jam tidak boleh negatif. Nilai yang diberikan: {nilai}."
         )
+
+    assert nilai >= 0, "Validasi internal gagal: bobot jam harus non-negatif."
 
     return nilai
 
