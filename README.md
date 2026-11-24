@@ -59,20 +59,21 @@ deadlinewoi/
 
 Jalankan perintah berikut di terminal:
 
-### A. Menjalankan Antarmuka Terminal (CLI)
+### A. Menjalankan Antarmuka Grafis Desktop (Tkinter GUI) — Default
 ```bash
+# Langsung membuka GUI desktop
 python main.py
-```
-Menyediakan menu interaktif untuk melihat tabel, mencari, mengurutkan, menyaring tugas, melihat statistik jam, serta menambah tugas baru.
 
-### B. Menjalankan Antarmuka Grafis Desktop (Tkinter GUI)
-```bash
-# Opsi 1: Menjalankan modul UI langsung
+# Atau bisa juga menjalankan modul UI secara langsung
 python ui.py
-
-# Opsi 2: Menjalankan lewat main dengan argumen --gui
-python main.py --gui
 ```
+
+### B. Menjalankan Antarmuka Terminal (CLI)
+```bash
+# Menjalankan menu interaktif di terminal dengan opsi --cli
+python main.py --cli
+```
+Menyediakan menu interaktif di terminal untuk melihat tabel, mencari, mengurutkan, menyaring tugas, melihat statistik jam, serta menambah tugas baru.
 
 ### C. Menjalankan Pengujian Unit Otomatis (Unit Testing)
 ```bash

@@ -181,8 +181,8 @@ def jalankan_menu_cli() -> None:
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1].lower() in ("--gui", "-g"):
+    if len(sys.argv) > 1 and sys.argv[1].lower() in ("--cli", "-c"):
+        jalankan_menu_cli()
+    else:
         from ui import jalankan_ui
         jalankan_ui()
-    else:
-        jalankan_menu_cli()
