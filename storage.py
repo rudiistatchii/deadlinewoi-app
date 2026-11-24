@@ -23,7 +23,7 @@ def muat_data(path: str) -> list:
                     tugas = Tugas.dari_dict(data_valid)
                     daftar_tugas.append(tugas)
 
-                except ValueError as e:
+                except (ValueError, KeyError, AttributeError, TypeError) as e:
                     print(f"[PERINGATAN] Baris {nomor_baris} dilewati — {e}")
 
     except FileNotFoundError:
