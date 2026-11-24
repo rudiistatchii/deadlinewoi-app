@@ -79,15 +79,3 @@ python main.py --gui
 python -m unittest discover tests
 ```
 Semua 6 test case akan diuji secara otomatis dan mandiri menggunakan file CSV sementara tanpa mengotori data asli.
-
----
-
-## 4. Pengujian Mandiri per Modul (*Smoke Testing*)
-
-Setiap modul inti memiliki blok `if __name__ == "__main__":` sehingga dapat diuji sendiri-sendiri langsung dari terminal:
-```bash
-python models.py    # Uji coba pembuatan objek Tugas
-python validasi.py  # Uji coba penolakan input tidak valid
-python storage.py   # Uji coba pembacaan file CSV
-python services.py  # Uji coba logika bisnis (cari, urut, filter, total jam)
-```
