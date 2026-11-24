@@ -140,8 +140,11 @@ class TugasService:
 
     def hitung_total_jam(self, *tugas_pilihan: Tugas) -> float:
         """Hitung total estimasi jam pengerjaan (*args)."""
-        kumpulan_tugas = tugas_pilihan if tugas_pilihan else self.daftar_tugas
-        return sum(t.bobot_jam for t in kumpulan_tugas)
+        return sum(t.bobot_jam for t in tugas_pilihan)
+
+    def hitung_total_semua(self) -> float:
+        """Hitung total estimasi jam dari seluruh tugas yang ada."""
+        return self.hitung_total_jam(*self.daftar_tugas)
 
     def filter_tugas(self, **kriteria) -> List[Tugas]:
         """Filter daftar tugas secara dinamis (**kwargs)."""
@@ -174,4 +177,4 @@ class TugasService:
 if __name__ == "__main__":
     service = TugasService()
     print("Total tugas:", len(service.ambil_semua()))
-    print("Total jam (*args):", service.hitung_total_jam())
+    print("Total jam (*args):", service.hitung_total_semua())

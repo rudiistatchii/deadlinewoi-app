@@ -92,7 +92,7 @@ def menu_statistik_jam(service: TugasService) -> None:
     tugas_proses = service.filter_tugas(status="Proses")
     tugas_selesai = service.filter_tugas(status="Selesai")
 
-    jam_total = service.hitung_total_jam()
+    jam_total = service.hitung_total_semua()
     jam_belum = service.hitung_total_jam(*tugas_belum)
     jam_proses = service.hitung_total_jam(*tugas_proses)
     jam_selesai = service.hitung_total_jam(*tugas_selesai)

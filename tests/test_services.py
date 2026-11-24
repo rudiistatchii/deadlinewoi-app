@@ -72,8 +72,9 @@ class TestTugasService(unittest.TestCase):
 
     def test_hitung_total_jam_args(self) -> None:
         """Uji agregasi total jam menggunakan *args."""
-        total_semua = self.service.hitung_total_jam()
+        total_semua = self.service.hitung_total_semua()
         self.assertEqual(total_semua, 16.0)
+        self.assertEqual(self.service.hitung_total_jam(), 0.0)
 
         t1 = self.service.ambil_berdasarkan_id("T001")
         t2 = self.service.ambil_berdasarkan_id("T002")
