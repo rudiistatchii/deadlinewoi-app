@@ -119,3 +119,5 @@ def validasi_semua(data: dict) -> dict:
         "prioritas": validasi_prioritas(data["prioritas"]),
         "status": validasi_status(data["status"]),
     }
+
+

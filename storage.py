@@ -80,3 +80,7 @@ def _pastikan_folder_ada(path: str) -> None:
     if folder and not os.path.exists(folder):
         os.makedirs(folder)
         print(f"[INFO] Folder '{folder}' berhasil dibuat.")
+
+
+
+

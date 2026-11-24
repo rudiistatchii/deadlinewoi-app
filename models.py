@@ -1,8 +1,3 @@
-"""Menyediakan representasi data tugas kuliah."""
-
-from datetime import date
-
-
 class Tugas:
     """Mewakili satu tugas kuliah."""
 
@@ -20,7 +15,7 @@ class Tugas:
         prioritas: int,
         status: str,
     ) -> None:
-        """Menyimpan seluruh informasi satu tugas."""
+        """Menginisialisasi data tugas."""
         self.id = id
         self.judul = judul
         self.mata_kuliah = mata_kuliah
@@ -31,7 +26,7 @@ class Tugas:
         self.status = status
 
     def ke_dict(self) -> dict:
-        """Mengubah tugas menjadi dictionary untuk penyimpanan."""
+        """Mengubah data tugas menjadi dictionary."""
         return {
             "id": self.id,
             "judul": self.judul,
@@ -58,8 +53,12 @@ class Tugas:
         )
 
     def __repr__(self) -> str:
-        """Menampilkan ringkasan tugas saat dicetak atau diperiksa."""
+        """Mengembalikan representasi teks dari tugas."""
         return (
             f"Tugas(id={self.id!r}, judul={self.judul!r}, "
             f"deadline={self.deadline!r}, status={self.status!r})"
         )
+
+
+
+
