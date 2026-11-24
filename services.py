@@ -1,5 +1,7 @@
-import os
-from typing import List, Optional
+"""Modul layanan logika bisnis dan pengolahan data tugas."""
+
+import os  # mengelola jalur direktori dan file
+from typing import List, Optional  # memberikan anotasi tipe data statis
 
 from models import Tugas
 import storage

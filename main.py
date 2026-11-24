@@ -1,4 +1,6 @@
-import sys
+"""Modul utama untuk menjalankan antarmuka CLI dan peluncur aplikasi DeadlineWoi."""
+
+import sys  # mengakses argumen baris perintah
 from services import TugasService
 
 

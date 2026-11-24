@@ -1,6 +1,8 @@
-import tkinter as tk
-from tkinter import ttk, messagebox
-from typing import Optional
+"""Modul antarmuka pengguna berbasis grafis (GUI) Tkinter."""
+
+import tkinter as tk  # membuat komponen antarmuka grafis desktop
+from tkinter import ttk, messagebox  # widget bertema modern dan kotak dialog pesan
+from typing import Optional  # memberikan anotasi tipe data opsional
 
 from services import TugasService
 
@@ -245,6 +247,7 @@ class DeadlineWoiUI:
         combo.pack(pady=4)
 
         def simpan_status():
+            """Menyimpan pembaruan status tugas yang dipilih."""
             status_baru = combo.get()
             try:
                 self.service.perbarui_status(id_tugas, status_baru)
@@ -301,6 +304,7 @@ class DeadlineWoiUI:
         combo_st.grid(row=6, column=1, pady=4)
 
         def simpan_tugas():
+            """Mengambil input formulir dan menyimpan tugas baru."""
             data_dict = {
                 "id": "",
                 "judul": entry_judul.get(),

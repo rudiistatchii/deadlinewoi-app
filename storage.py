@@ -1,6 +1,8 @@
 
-import csv
-import os
+"""Modul penanganan operasi baca dan tulis file CSV."""
+
+import csv  # membaca dan menulis file format CSV
+import os  # memeriksa dan membuat direktori file
 
 from models import Tugas
 from validasi import validasi_semua

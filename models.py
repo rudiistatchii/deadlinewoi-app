@@ -1,3 +1,6 @@
+"""Modul definisi class data Tugas untuk aplikasi DeadlineWoi."""
+
+
 class Tugas:
     """Mewakili satu tugas kuliah."""
 
