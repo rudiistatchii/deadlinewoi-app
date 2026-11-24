@@ -14,8 +14,9 @@ deadlinewoi/
 ├── data/
 │   └── tugas.csv        # Database tabular berbasis CSV
 ├── tests/
-│   ├── __init__.py      # Package marker
-│   └── test_services.py # Unit test otomatis (unittest)
+│   ├── __init__.py               # Package marker
+│   ├── test_services.py          # Unit test logika bisnis (6 test cases)
+│   └── test_validasi_storage.py  # Unit test validasi & file handling (3 test cases)
 ├── .gitignore           # File pengabaian git (mengabaikan __pycache__/)
 ├── main.py              # Entry Point: Menu terminal interaktif dan peluncur aplikasi
 ├── models.py            # Layer Data: Class Tugas (blueprint objek data)
@@ -50,7 +51,7 @@ deadlinewoi/
 | **Pencarian (Searching)** | Method `cari_tugas(kata_kunci)` dengan algoritma pencarian teks case-insensitive. | `services.py` |
 | **File Handling Aman** | Seluruh baca/tulis memakai `with open()`, mendukung mode `'r'`, `'w'`, dan `'a'`. | `storage.py` |
 | **Error Handling** | Penanganan `FileNotFoundError`, `ValueError`, `raise`, dan penggunaan `assert`. | `storage.py`, `validasi.py` |
-| **Unit Testing** | Kelas pengujian `TestTugasService` dengan 6 fungsi uji independen dari UI. | `tests/test_services.py` |
+| **Unit Testing** | 2 kelas pengujian dengan total 9 fungsi uji independen dari UI. | `tests/` |
 | **Antarmuka Pengguna (UI)** | GUI desktop Tkinter berbasis tabular (`ttk.Treeview`), form input, dan tombol aksi. | `ui.py` |
 
 ---
@@ -79,4 +80,4 @@ Menyediakan menu interaktif di terminal untuk melihat tabel, mencari, mengurutka
 ```bash
 python -m unittest discover tests
 ```
-Semua 6 test case akan diuji secara otomatis dan mandiri menggunakan file CSV sementara tanpa mengotori data asli.
+Semua 9 test case akan diuji secara otomatis dan mandiri menggunakan file CSV sementara tanpa mengotori data asli.
