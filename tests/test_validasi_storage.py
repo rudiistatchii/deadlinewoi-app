@@ -68,6 +68,33 @@ class TestValidasiDanStorage(unittest.TestCase):
             if os.path.exists(temp_file.name):
                 os.remove(temp_file.name)
 
+    def test_muat_data_id_kosong_dan_duplikat(self) -> None:
+        """Memastikan muat_data melewati baris dengan ID kosong atau ID duplikat."""
+        temp_file = tempfile.NamedTemporaryFile(
+            mode="w", delete=False, suffix=".csv", encoding="utf-8"
+        )
+        baris_csv = (
+            "id,judul,mata_kuliah,kategori,deadline,bobot_jam,prioritas,status\n"
+            "T001,Tugas Valid Pertama,Basis Data,Tugas,2026-11-20,3.0,1,Belum\n"
+            ",Tugas Tanpa ID,Struktur Data,Kuis,2026-11-22,2.0,2,Belum\n"
+            "   ,Tugas ID Spasi,Jaringan Komputer,Tugas,2026-11-23,1.5,1,Belum\n"
+            "T001,Tugas ID Duplikat,Analisis SI,Proyek,2026-12-01,5.0,3,Proses\n"
+            "T002,Tugas Valid Kedua,Etika Profesi,Tugas,2026-11-25,2.0,2,Belum\n"
+        )
+        temp_file.write(baris_csv)
+        temp_file.close()
+
+        try:
+            hasil = muat_data(temp_file.name)
+            self.assertEqual(len(hasil), 2)
+            self.assertEqual(hasil[0].id, "T001")
+            self.assertEqual(hasil[0].judul, "Tugas Valid Pertama")
+            self.assertEqual(hasil[1].id, "T002")
+            self.assertEqual(hasil[1].judul, "Tugas Valid Kedua")
+        finally:
+            if os.path.exists(temp_file.name):
+                os.remove(temp_file.name)
+
 
 if __name__ == "__main__":
     unittest.main()

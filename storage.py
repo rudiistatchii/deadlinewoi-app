@@ -14,6 +14,7 @@ HEADER_CSV = Tugas.HEADER
 def muat_data(path: str) -> list:
     """Memuat tugas dari file CSV."""
     daftar_tugas = []
+    id_tercatat = set()
 
     try:
         with open(path, mode="r", encoding="utf-8", newline="") as file_csv:
@@ -22,8 +23,22 @@ def muat_data(path: str) -> list:
             for nomor_baris, baris in enumerate(pembaca, start=2):
                 try:
                     data_valid = validasi_semua(baris)
+                    id_tugas = data_valid["id"]
+
+                    if not id_tugas:
+                        print(f"[PERINGATAN] Baris {nomor_baris} dilewati — ID tugas kosong.")
+                        continue
+
+                    if id_tugas.upper() in id_tercatat:
+                        print(
+                            f"[PERINGATAN] Baris {nomor_baris} dilewati — "
+                            f"ID tugas '{id_tugas}' sudah muncul sebelumnya (duplikat)."
+                        )
+                        continue
+
                     tugas = Tugas.dari_dict(data_valid)
                     daftar_tugas.append(tugas)
+                    id_tercatat.add(id_tugas.upper())
 
                 except (ValueError, KeyError, AttributeError, TypeError) as e:
                     print(f"[PERINGATAN] Baris {nomor_baris} dilewati — {e}")
